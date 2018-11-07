@@ -7,8 +7,6 @@ import android.content.pm.PackageManager
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.app.LoaderManager.LoaderCallbacks
-import android.content.CursorLoader
-import android.content.Loader
 import android.database.Cursor
 import android.net.Uri
 import android.os.AsyncTask
@@ -23,6 +21,9 @@ import android.widget.TextView
 
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
+import android.content.*
+import android.util.Log
+import android.widget.Toast
 import com.example.iqbal.karcis.R
 
 import kotlinx.android.synthetic.main.activity_login.*
@@ -35,10 +36,20 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private var mAuthTask: UserLoginTask? = null
+    private lateinit var mSharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        mSharedPref = this.getSharedPreferences(getString(R.string.login_state), Context.MODE_PRIVATE)
+
+        Log.i("Coba", "Login" + mSharedPref.getBoolean(getString(R.string.login_state), false))
+
+        if(mSharedPref.getBoolean(getString(R.string.login_state), false)){
+            goToMain()
+        }
+
         // Set up the login form.
         populateAutoComplete()
         input_password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
@@ -50,6 +61,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         })
 
         btn_login.setOnClickListener { attemptLogin() }
+        link_signup.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun populateAutoComplete() {
@@ -269,7 +284,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             showProgress(false)
 
             if (success!!) {
-                finish()
+                mSharedPref = this@LoginActivity.getSharedPreferences(getString(R.string.login_state), Context.MODE_PRIVATE)
+                with (mSharedPref.edit()) {
+                    putBoolean(getString(com.example.iqbal.karcis.R.string.login_state), true)
+                    apply()
+                }
+                goToMain()
             } else {
                 input_password.error = getString(R.string.error_incorrect_password)
                 input_password.requestFocus()
@@ -280,6 +300,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             mAuthTask = null
             showProgress(false)
         }
+    }
+
+    private fun goToMain() {
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     companion object {
