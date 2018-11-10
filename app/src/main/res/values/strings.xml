@@ -17,4 +17,16 @@
     <string name="user_password">password</string>
     <string name="user_email">email</string>
     <string name="logout">Logout</string>
+
+    <string name="overview_venom">When Eddie Brock acquires the powers of a symbiote, he will have to release his alter-ego "Venom" to save his life. </string>
+    <string name="overview_halloween">Laurie Strode confronts her long-time foe Michael Myers, the masked figure who has haunted her since she narrowly escaped his killing spree on Halloween night four decades ago. </string>
+    <string name="overview_nun">A priest with a haunted past and a novice on the threshold of her final vows are sent by the Vatican to investigate the death of a young nun in Romania and confront a malevolent force in the form of a demonic nun. </string>
+    <string name="overview_bp">T\'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country\'s past. </string>
+    <string name="overview_rampage">When three different animals become infected with a dangerous pathogen, a primatologist and a geneticist team up to stop them from destroying Chicago. </string>
+
+    <string name="overview_aquaman">Arthur Curry learns that he is the heir to the underwater kingdom of Atlantis, and must step forward to lead his people and be a hero to the world. </string>
+    <string name="overview_br">A chronicle of the years leading up to Queen\'s legendary appearance at the Live Aid (1985) concert. </string>
+    <string name="overview_bumblebee">On the run in the year 1987, Bumblebee finds refuge in a junkyard in a small Californian beach town. Charlie, on the cusp of turning 18 and trying to find her place in the world, discovers Bumblebee, battle-scarred and broken. </string>
+    <string name="overview_grinch">A grumpy Grinch plots to ruin Christmas for the village of Whoville. </string>
+    <string name="overview_wir">Six years after the events of "Wreck-It Ralph", Ralph and Vanellope, now friends, discover a wi-fi router in their arcade, leading them into a new adventure. </string>
 </resources>

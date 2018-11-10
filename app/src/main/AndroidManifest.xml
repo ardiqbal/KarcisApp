@@ -16,10 +16,11 @@
             android:theme="@style/AppTheme">
         <activity
                 android:name=".activity.MainActivity"
-        android:label="@string/title_activity_main">
+                android:label="@string/title_activity_main">
         </activity>
-        <activity android:name=".activity.RegisterActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".activity.RegisterActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
                 android:name=".activity.LoginActivity"
@@ -29,6 +30,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.MovieDetailActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.iqbal.karcis.activity.MainActivity" />
         </activity>
     </application>
 

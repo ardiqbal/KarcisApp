@@ -9,9 +9,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.AdapterView
 import com.example.iqbal.karcis.adapter.MovieAdapter
 import com.example.iqbal.karcis.model.Movie
 import kotlinx.android.synthetic.main.list_coming_soon.*
@@ -29,21 +31,20 @@ class MainActivity : AppCompatActivity() {
 
         loadData()
         loadLayout()
-
     }
 
     private fun loadData() {
-        mDataNowPlaying.add(Movie("Halloween", R.drawable.halloween))
-        mDataNowPlaying.add(Movie("Venom", R.drawable.venom))
-        mDataNowPlaying.add(Movie("The Nun", R.drawable.nun))
-        mDataNowPlaying.add(Movie("Black Panther", R.drawable.bp))
-        mDataNowPlaying.add(Movie("Rampage", R.drawable.rampage))
+        mDataNowPlaying.add(Movie("Halloween", R.drawable.halloween, getString(R.string.overview_halloween)))
+        mDataNowPlaying.add(Movie("Venom", R.drawable.venom, getString(R.string.overview_venom)))
+        mDataNowPlaying.add(Movie("The Nun", R.drawable.nun, getString(R.string.overview_nun)))
+        mDataNowPlaying.add(Movie("Black Panther", R.drawable.bp, getString(R.string.overview_bp)))
+        mDataNowPlaying.add(Movie("Rampage", R.drawable.rampage, getString(R.string.overview_rampage)))
 
-        mDataComingSoon.add(Movie("Aquaman", R.drawable.aquaman))
-        mDataComingSoon.add(Movie("Bohemian Rhapsody", R.drawable.br))
-        mDataComingSoon.add(Movie("Bumblebee", R.drawable.bumblebee))
-        mDataComingSoon.add(Movie("Grinch", R.drawable.grinch))
-        mDataComingSoon.add(Movie("Wreck-It Ralph 2", R.drawable.wir))
+        mDataComingSoon.add(Movie("Aquaman", R.drawable.aquaman, getString(R.string.overview_aquaman)))
+        mDataComingSoon.add(Movie("Bohemian Rhapsody", R.drawable.br, getString(R.string.overview_br)))
+        mDataComingSoon.add(Movie("Bumblebee", R.drawable.bumblebee, getString(R.string.overview_bumblebee)))
+        mDataComingSoon.add(Movie("The Grinch", R.drawable.grinch, getString(R.string.overview_grinch)))
+        mDataComingSoon.add(Movie("Wreck-It Ralph 2", R.drawable.wir, getString(R.string.overview_wir)))
     }
 
     private fun loadLayout() {
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         rv_now_playing.layoutManager = nowPlayingLayout
         rv_now_playing.smoothScrollToPosition(1)
 
-        val movieAdapter = MovieAdapter(mDataNowPlaying)
+        val movieAdapter = MovieAdapter(mDataNowPlaying, this)
         rv_now_playing.adapter = movieAdapter
 
         rv_coming_soon.isNestedScrollingEnabled = false
@@ -62,8 +63,10 @@ class MainActivity : AppCompatActivity() {
         rv_coming_soon.layoutManager = comingSoonLayout
         rv_coming_soon.smoothScrollToPosition(1)
 
-        val movie2Adapter = MovieAdapter(mDataComingSoon)
+        val movie2Adapter = MovieAdapter(mDataComingSoon, this)
         rv_coming_soon.adapter = movie2Adapter
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
