@@ -1,5 +1,6 @@
 package com.example.iqbal.karcis.activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.iqbal.karcis.R
@@ -21,5 +22,11 @@ class MovieDetailActivity : AppCompatActivity() {
 
         val mSynopsis = intent.getStringExtra("item_overview")
         content.text = mSynopsis
+
+        btn_order.setOnClickListener {
+            val intent = Intent(this, OrderActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
