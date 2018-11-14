@@ -20,6 +20,8 @@ class OrderActivity : AppCompatActivity(), SummaryFragment.OnFragmentInteraction
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order)
 
+        setTitle("Order your ticket")
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)

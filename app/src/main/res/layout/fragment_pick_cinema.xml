@@ -1,14 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".fragment.PickCinemaFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+             tools:context=".fragment.PickCinemaFragment"
+              android:orientation="vertical"
+>
+    <LinearLayout android:id="@+id/layout_spinner1"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+    >
+        <TextView android:id="@+id/title_city"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="18dp"
+                  android:textColor="@android:color/black"
+                  android:text="Choose city : "
+                  android:padding="8dp"
+        />
+        <Spinner android:id="@+id/spinner_city"
+                 android:layout_width="match_parent"
+                 android:layout_height="40dp"
+                 android:spinnerMode="dropdown"
+        />
+    </LinearLayout>
+    <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="cinema"/>
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+    <LinearLayout android:id="@+id/layout_spinner2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_below="@id/layout_spinner1"
+    >
+        <TextView android:id="@+id/title_cinema"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="18dp"
+                  android:textColor="@android:color/black"
+                  android:text="Choose cinema : "
+                  android:padding="8dp"
+        />
+        <Spinner android:id="@+id/spinner_cinema"
+                 android:layout_width="match_parent"
+                 android:layout_height="40dp"
+                 android:spinnerMode="dropdown"
+        />
+    </LinearLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+    <LinearLayout android:id="@+id/layout_spinner3"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_below="@+id/layout_spinner2"
+    >
+        <TextView android:id="@+id/title_time"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="18dp"
+                  android:textColor="@android:color/black"
+                  android:text="Choose time : "
+                  android:padding="8dp"
+        />
+        <Spinner android:id="@+id/spinner_time"
+                 android:layout_width="match_parent"
+                 android:layout_height="40dp"
+                 android:spinnerMode="dropdown"
+        />
+    </LinearLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+    <LinearLayout android:id="@+id/swipe_next"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_alignParentBottom="true"
+                  android:layout_margin="24dp"
+                  android:gravity="center"
+                  android:visibility="gone"
+    >
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_arrow_back_black_24dp"
+                   android:layout_marginStart="8dp"
+                   android:layout_marginEnd="8dp"
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Swipe left to next"
+                  android:textSize="20dp"
+                  android:textColor="@color/colorAccent"
+        />
+    </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>

@@ -26,8 +26,6 @@ class MovieAdapter(val item : List<Movie>, val context : Context) : RecyclerView
         holder.bind(item[position])
 
         holder.itemView.setOnClickListener {
-            Log.i("Coba", "" + position)
-
             val intent = Intent(context, MovieDetailActivity::class.java)
             intent.putExtra("item_name", item[position].name)
             intent.putExtra("item_image", item[position].image)

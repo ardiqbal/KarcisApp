@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cinema_array">
+        <item></item>
+        <item>XXI</item>
+        <item>CGV</item>
+        <item>Cinemaxx</item>
+    </string-array>
+</resources>

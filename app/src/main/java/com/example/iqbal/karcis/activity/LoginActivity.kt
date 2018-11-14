@@ -44,8 +44,6 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
         mSharedPref = this.getSharedPreferences(getString(R.string.login_state), Context.MODE_PRIVATE)
 
-        Log.i("Coba", "Login" + mSharedPref.getBoolean(getString(R.string.login_state), false))
-
         if(mSharedPref.getBoolean(getString(R.string.login_state), false)){
             goToMain()
         }
