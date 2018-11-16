@@ -1,6 +1,7 @@
 package com.example.iqbal.karcis.fragment
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.net.Uri
 import android.opengl.Visibility
 import android.os.Bundle
@@ -39,6 +40,8 @@ class PickCinemaFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var item1: Boolean = false
     private var item2: Boolean = false
     private var item3: Boolean = false
+    private var item4: Boolean = false
+    private lateinit var mSharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +54,7 @@ class PickCinemaFragment : Fragment(), AdapterView.OnItemSelectedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mSharedPref = context!!.getSharedPreferences(getString(R.string.order), Context.MODE_PRIVATE)
         val v : View = inflater.inflate(R.layout.fragment_pick_cinema, container, false)
         val spinnerCity: Spinner = v.findViewById(R.id.spinner_city)
         spinnerCity.onItemSelectedListener = this
@@ -70,6 +74,15 @@ class PickCinemaFragment : Fragment(), AdapterView.OnItemSelectedListener {
             spinnerCinema.adapter = adapter
         }
 
+        val spinnerDate: Spinner = v.findViewById(R.id.spinner_date)
+        spinnerDate.onItemSelectedListener = this
+        ArrayAdapter.createFromResource(
+            context, R.array.date_array, R.layout.spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerDate.adapter = adapter
+        }
+
         val spinnerTime: Spinner = v.findViewById(R.id.spinner_time)
         spinnerTime.onItemSelectedListener = this
         ArrayAdapter.createFromResource(
@@ -86,24 +99,65 @@ class PickCinemaFragment : Fragment(), AdapterView.OnItemSelectedListener {
         if(parent?.id == R.id.spinner_city){
             if(position != 0){
                 item1 = true
+                with (mSharedPref.edit()) {
+                    putString(getString(R.string.order_city), resources.getStringArray(R.array.city_array)[position])
+                    apply()
+                }
             }else{
                 item1 = false
+                item2 = false
+                with (mSharedPref.edit()) {
+                    putString(getString(R.string.order_cinema), "Not selected")
+                    apply()
+                }
             }
         }else if(parent?.id == R.id.spinner_cinema){
             if(position != 0){
                 item2 = true
+                with (mSharedPref.edit()) {
+                    putString(getString(R.string.order_cinema), resources.getStringArray(R.array.cinema_array)[position])
+                    apply()
+                }
             }else{
                 item2 = false
+                with (mSharedPref.edit()) {
+                    putString(getString(R.string.order_cinema), "Not selected")
+                    apply()
+                }
             }
-        }else if(parent?.id == R.id.spinner_time){
+        }else if(parent?.id == R.id.spinner_date){
             if(position != 0){
                 item3 = true
+                with (mSharedPref.edit()) {
+                    putString(getString(R.string.order_date), resources.getStringArray(R.array.date_array)[position])
+                    apply()
+                }
             }else{
                 item3 = false
+                with (mSharedPref.edit()) {
+                    putString(getString(R.string.order_cinema), "Not selected")
+                    apply()
+                }
             }
         }
 
-        if(item1 && item2 && item3){
+        else if(parent?.id == R.id.spinner_time){
+            if(position != 0){
+                item4 = true
+                with (mSharedPref.edit()) {
+                    putString(getString(R.string.order_time), resources.getStringArray(R.array.time_array)[position])
+                    apply()
+                }
+            }else{
+                item4 = false
+                with (mSharedPref.edit()) {
+                    putString(getString(R.string.order_cinema), "Not selected")
+                    apply()
+                }
+            }
+        }
+
+        if(item1 && item2 && item3 && item4){
             swipe_next.visibility = View.VISIBLE
         }else{
             swipe_next.visibility = View.GONE

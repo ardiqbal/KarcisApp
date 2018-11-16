@@ -1,14 +1,22 @@
 package com.example.iqbal.karcis.fragment
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.GridView
 
 import com.example.iqbal.karcis.R
+import com.example.iqbal.karcis.model.Seat
+import kotlinx.android.synthetic.main.fragment_pick_seat.*
+import kotlinx.android.synthetic.main.item_seat.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +35,10 @@ class PickSeatFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var page: Int? = null
     private var listener: OnFragmentInteractionListener? = null
+    var seatList = ArrayList<Seat>()
+    var adapter: SeatAdapter? = null
+    private var ordered: Int = 0
+    private lateinit var mSharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +52,37 @@ class PickSeatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pick_seat, container, false)
+        val v: View = inflater.inflate(R.layout.fragment_pick_seat, container, false)
+        val gridSeat: GridView = v.findViewById(R.id.grid_seat)
+        mSharedPref = context!!.getSharedPreferences(getString(R.string.order), Context.MODE_PRIVATE)
+
+        // load seats
+        for(i in 1..100){
+            seatList.add(Seat(0))
+        }
+
+        adapter = SeatAdapter(this.context!!, seatList)
+
+        gridSeat.adapter = adapter
+
+        gridSeat.setOnItemClickListener { parent, view, position, id ->
+            if(seatList[position].seat == 0){
+                seatList[position].seat = 1
+                view.item_seat.setBackgroundResource(R.color.colorAccent)
+                ordered++
+            }else{
+                seatList[position].seat = 0
+                view.item_seat.setBackgroundResource(android.R.color.darker_gray)
+                ordered--
+            }
+
+            with (mSharedPref.edit()) {
+                putInt(getString(R.string.order_count), ordered)
+                apply()
+            }
+        }
+
+        return v
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -94,5 +136,48 @@ class PickSeatFragment : Fragment() {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }
             }
+    }
+
+    inner class SeatAdapter : BaseAdapter {
+        private var seatList = ArrayList<Seat>()
+        private var context: Context? = null
+
+        constructor(context: Context, seatList: ArrayList<Seat>) : super() {
+            this.context = context
+            this.seatList = seatList
+        }
+
+        override fun getCount(): Int {
+            return seatList.size
+        }
+
+        override fun getItem(position: Int): Any {
+            return seatList[position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+            val seat = this.seatList[position]
+
+            val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val seatView = inflater.inflate(R.layout.item_seat, parent, false)
+
+            /*seatView.setOnClickListener{
+                if(seat.seat == 0){
+                    seat.seat = 1
+                    seatView.item_seat.setBackgroundResource(R.color.colorAccent)
+                    ordered++
+                }else{
+                    seat.seat = 0
+                    seatView.item_seat.setBackgroundResource(android.R.color.darker_gray)
+                    ordered--
+                }
+            }*/
+
+            return seatView
+        }
     }
 }

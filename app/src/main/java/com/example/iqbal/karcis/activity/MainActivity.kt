@@ -4,16 +4,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import com.example.iqbal.karcis.R
-import android.R.menu
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
-import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.AdapterView
 import com.example.iqbal.karcis.adapter.MovieAdapter
 import com.example.iqbal.karcis.model.Movie
 import kotlinx.android.synthetic.main.list_coming_soon.*
@@ -34,17 +29,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
-        mDataNowPlaying.add(Movie("Halloween", R.drawable.halloween, getString(R.string.overview_halloween)))
-        mDataNowPlaying.add(Movie("Venom", R.drawable.venom, getString(R.string.overview_venom)))
-        mDataNowPlaying.add(Movie("The Nun", R.drawable.nun, getString(R.string.overview_nun)))
-        mDataNowPlaying.add(Movie("Black Panther", R.drawable.bp, getString(R.string.overview_bp)))
-        mDataNowPlaying.add(Movie("Rampage", R.drawable.rampage, getString(R.string.overview_rampage)))
+        mDataNowPlaying.add(Movie("Halloween", R.drawable.halloween, getString(R.string.overview_halloween), true))
+        mDataNowPlaying.add(Movie("Venom", R.drawable.venom, getString(R.string.overview_venom), true))
+        mDataNowPlaying.add(Movie("The Nun", R.drawable.nun, getString(R.string.overview_nun), true))
+        mDataNowPlaying.add(Movie("Black Panther", R.drawable.bp, getString(R.string.overview_bp), true))
+        mDataNowPlaying.add(Movie("Rampage", R.drawable.rampage, getString(R.string.overview_rampage), true))
 
-        mDataComingSoon.add(Movie("Aquaman", R.drawable.aquaman, getString(R.string.overview_aquaman)))
-        mDataComingSoon.add(Movie("Bohemian Rhapsody", R.drawable.br, getString(R.string.overview_br)))
-        mDataComingSoon.add(Movie("Bumblebee", R.drawable.bumblebee, getString(R.string.overview_bumblebee)))
-        mDataComingSoon.add(Movie("The Grinch", R.drawable.grinch, getString(R.string.overview_grinch)))
-        mDataComingSoon.add(Movie("Wreck-It Ralph 2", R.drawable.wir, getString(R.string.overview_wir)))
+        mDataComingSoon.add(Movie("Aquaman", R.drawable.aquaman, getString(R.string.overview_aquaman), false))
+        mDataComingSoon.add(Movie("Bohemian Rhapsody", R.drawable.br, getString(R.string.overview_br), false))
+        mDataComingSoon.add(Movie("Bumblebee", R.drawable.bumblebee, getString(R.string.overview_bumblebee), false))
+        mDataComingSoon.add(Movie("The Grinch", R.drawable.grinch, getString(R.string.overview_grinch), false))
+        mDataComingSoon.add(Movie("Wreck-It Ralph 2", R.drawable.wir, getString(R.string.overview_wir), false))
     }
 
     private fun loadLayout() {
@@ -86,6 +81,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        } else if(item?.itemId == R.id.action_eticket){
+            val intent = Intent(this, ETicketActivity::class.java)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }

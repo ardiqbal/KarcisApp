@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="date_array">
+        <item></item>
+        <item>1 November 2018</item>
+        <item>2 November 2018</item>
+        <item>3 November 2018</item>
+        <item>4 November 2018</item>
+        <item>5 November 2018</item>
+        <item>6 November 2018</item>
+        <item>7 November 2018</item>
+    </string-array>
+</resources>

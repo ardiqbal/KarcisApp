@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import com.example.iqbal.karcis.R
 import com.example.iqbal.karcis.fragment.PickCinemaFragment
 import com.example.iqbal.karcis.fragment.PickSeatFragment
@@ -28,6 +30,7 @@ class OrderActivity : AppCompatActivity(), SummaryFragment.OnFragmentInteraction
 
         // Set up the ViewPager with the sections adapter.
         container.adapter = mSectionsPagerAdapter
+
     }
 
     override fun onFragmentInteraction(uri: Uri) {
@@ -55,5 +58,7 @@ class OrderActivity : AppCompatActivity(), SummaryFragment.OnFragmentInteraction
             // Show 3 total pages.
             return 3
         }
+
+
     }
 }

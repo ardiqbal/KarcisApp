@@ -38,6 +38,10 @@
         </activity>
         <activity android:name=".activity.OrderActivity">
         </activity>
+        <activity android:name=".activity.ConfirmActivity">
+        </activity>
+        <activity android:name=".activity.ETicketActivity">
+        </activity>
     </application>
 
 </manifest>

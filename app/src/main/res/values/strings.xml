@@ -17,6 +17,13 @@
     <string name="user_password">password</string>
     <string name="user_email">email</string>
     <string name="logout">Logout</string>
+    <string name="order">order</string>
+    <string name="order_title">title</string>
+    <string name="order_city">city</string>
+    <string name="order_cinema">cinema</string>
+    <string name="order_date">date</string>
+    <string name="order_time">time</string>
+    <string name="order_count">count</string>
 
     <string name="overview_venom">When Eddie Brock acquires the powers of a symbiote, he will have to release his
         alter-ego "Venom" to save his life.

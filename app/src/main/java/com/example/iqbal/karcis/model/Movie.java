@@ -4,11 +4,13 @@ public class Movie {
     private String name;
     private int image;
     private String overview;
+    private Boolean type;
 
-    public Movie(String name, int image, String overview) {
+    public Movie(String name, int image, String overview, Boolean type) {
         this.name = name;
         this.image = image;
         this.overview = overview;
+        this.type = type;
     }
 
     public String getName() {
@@ -33,5 +35,13 @@ public class Movie {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public Boolean getType() {
+        return type;
+    }
+
+    public void setType(Boolean type) {
+        this.type = type;
     }
 }

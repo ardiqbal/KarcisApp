@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.ETicketActivity"
+        android:orientation="vertical">
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Congratulations!"
+              android:textSize="24sp"
+              android:gravity="center"
+              android:layout_marginTop="16dp"
+              android:textColor="@color/colorAccent"
+    />
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="This is your E-Ticket!"
+              android:textSize="18sp"
+              android:gravity="center"
+              android:layout_marginTop="16dp"
+              android:textColor="@android:color/black"
+    />
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="PX4 64T I3R 7DG"
+              android:textSize="24sp"
+              android:gravity="center"
+              android:layout_marginTop="16dp"
+              android:textColor="@android:color/black"
+              android:textStyle="bold"
+    />
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Show this e-ticket to the officer to get your movie ticket"
+              android:textSize="16sp"
+              android:gravity="center"
+              android:layout_marginTop="16dp"
+              android:paddingStart="24dp"
+              android:paddingEnd="24dp"
+    />
+</LinearLayout>

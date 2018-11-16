@@ -30,6 +30,7 @@ class MovieAdapter(val item : List<Movie>, val context : Context) : RecyclerView
             intent.putExtra("item_name", item[position].name)
             intent.putExtra("item_image", item[position].image)
             intent.putExtra("item_overview", item[position].overview)
+            intent.putExtra("item_type", item[position].type)
             context.startActivity(intent)
         }
     }
